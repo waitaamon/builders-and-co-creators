@@ -9,6 +9,7 @@
 namespace App\Repositories\Contracts;
 
 
-interface TopicRepository
+interface PostRepository
 {
+    public function findBySlug($slug);
 }

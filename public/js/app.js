@@ -48061,7 +48061,7 @@ exports = module.exports = __webpack_require__(11)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n.form-control[data-v-623d4e9e] {\n    border-radius: 0;\n}\n.btn[data-v-623d4e9e] {\n    border-radius: 0;\n}\n", ""]);
 
 // exports
 
@@ -48121,8 +48121,8 @@ var staticRenderFns = [
       _vm._v(" "),
       _c(
         "button",
-        { staticClass: "btn btn-primary mb-2", attrs: { type: "submit" } },
-        [_vm._v("Subscribe")]
+        { staticClass: "btn btn-success ml-1 mb-2", attrs: { type: "submit" } },
+        [_vm._v("SUBSCRIBE")]
       )
     ])
   }

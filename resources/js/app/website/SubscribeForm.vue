@@ -4,7 +4,7 @@
             <label for="email" class="sr-only">Email</label>
             <input type="email" readonly class="form-control" id="email" value="email@example.com">
         </div>
-        <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
+        <button type="submit" class="btn btn-success ml-1 mb-2">SUBSCRIBE</button>
     </form>
 </template>
 
@@ -15,5 +15,10 @@
 </script>
 
 <style scoped>
-
+    .form-control {
+        border-radius: 0;
+    }
+    .btn {
+        border-radius: 0;
+    }
 </style>

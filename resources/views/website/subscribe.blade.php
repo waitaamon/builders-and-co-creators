@@ -10,11 +10,11 @@
                 <subscribe-form></subscribe-form>
             </div>
             <div class="col-sm-12 col-md-4">
-                <h5 class="h5">Follow Us</h5>
-                <ul>
-                    <li><a href=""><i class="fab fa-facebook"></i></a></li>
-                    <li><a href=""><i class="fab fa-twitter"></i></a></li>
-                    <li><a href=""><i class="fab fa-youtube"></i></a></li>
+                <h5 class="h5 text-center">Follow Us</h5>
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item"><a href=""><i class="fab fa-facebook"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href=""><i class="fab fa-youtube"></i></a></li>
                 </ul>
             </div>
         </div>

@@ -8,24 +8,24 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <h4 class="text-center">WELCOME TO OUR WEBSITE</h4>
+                    <h2 class="h2 text-center font-weight-bold mt-5 mb-5">WELCOME TO OUR WEBSITE</h2>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="text-uppercase text-center">This is where we share, learn and get inspired for anything built or created.</p>
+                    <p class="font-weight-bold text-black-50 text-center">This is where we share, learn and get inspired for anything built or created.</p>
                 </div>
             </div>
         </div>
     </section>
-    <section id="featured" class="mt-5 mb-5">
+    <section id="featured" class="mt-5 mb-5 pt-5">
         <div class="container">
             <div class="row section-header">
                 <div class="col">
-                    <h4 class="h4 text-center">Featured Articles</h4>
+                    <h5 class="h5 text-center text-black-50 text-uppercase">Featured Articles</h5>
                 </div>
                 <div class="col">
-                    <h4 class="h4 text-center">Featured Videos</h4>
+                    <h5 class="h5 text-center text-black-50 text-uppercase">Featured Videos</h5>
                 </div>
             </div>
             <div class="row section-body">
