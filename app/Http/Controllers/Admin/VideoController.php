@@ -14,7 +14,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        //
+        $videos = '';
+        return view('admin.videos.index', compact('videos'));
     }
 
     /**
