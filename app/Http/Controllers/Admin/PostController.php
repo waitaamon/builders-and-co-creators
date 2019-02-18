@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\PostRequest;
 use App\Repositories\Contracts\PostRepository;
+use App\Repositories\Contracts\TopicRepository;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,18 +15,24 @@ class PostController extends Controller
      * @var PostRepository
      */
     protected $posts;
+    /**
+     * @var TopicRepository
+     */
+    protected $topics;
 
     /**
      * PostController constructor.
      * @param PostRepository $posts
+     * @param TopicRepository $topics
      */
-    public function __construct(PostRepository $posts)
+    public function __construct(PostRepository $posts, TopicRepository $topics)
     {
         $this->posts = $posts;
+        $this->topics = $topics;
     }
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of topics.
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,28 +44,56 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new topic.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $topics = $this->topics->all();
+
+        return view('admin.posts.create', compact('topics'));
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created topic in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        //
+        $post = $this->posts->create([
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'slug' => str_slug($request->title),
+            'body' => $request->body,
+            'is_published' => $request->publish,
+            'publish_date' => $request->publish ? Carbon::now() : null,
+            'featured' => $request->featured
+        ]);
+
+        if(!$post) {
+            return response()->json([
+                'errors' => [
+                    'root' => [
+                        'Could not create post, try again later!'
+                    ]
+                ]
+            ], 422);
+        }
+
+        $this->posts->createTopics($post->id, $this->extractedTopics($request->topics));
+
+        //save image
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified topic.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -67,7 +104,7 @@ class PostController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified topic.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -78,7 +115,7 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified topic in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -90,7 +127,7 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified topic from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -98,5 +135,16 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    protected function  extractedTopics($topics)
+    {
+        //topics
+        $tpcs = [];
+
+        foreach ($topics as $topic) {
+            array_push($tpcs, $topic['value']);
+        }
+        return $tpcs;
     }
 }

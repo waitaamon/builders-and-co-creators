@@ -19,8 +19,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('body');
-            $table->boolean('is_published');
-            $table->date('publish_date');
+            $table->boolean('is_published')->default(false);
+            $table->date('publish_date')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

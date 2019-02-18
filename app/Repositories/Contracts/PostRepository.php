@@ -12,4 +12,6 @@ namespace App\Repositories\Contracts;
 interface PostRepository
 {
     public function findBySlug($slug);
+
+    public function createTopics($postId, array $properties);
 }

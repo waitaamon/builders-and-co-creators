@@ -17,4 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::group(['middleware' => 'auth'], function (){
+
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+    //posts resource routes
+    Route::resource('posts', 'Admin\PostController');
+
+    //topics resource route
+    Route::resource('topics', 'Admin\TopicController');
+});
+

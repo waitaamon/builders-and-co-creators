@@ -15,9 +15,12 @@ class CreateSliderImagesTable extends Migration
     {
         Schema::create('slider_images', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
             $table->string('identifier');
             $table->integer('order');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -9,7 +9,7 @@
 namespace App\Repositories\Eloquent;
 
 
-use App\Models\Topic;
+use App\Models\Post;
 use App\Repositories\Contracts\PostRepository;
 use App\Repositories\RepositoryAbstract;
 
@@ -18,7 +18,12 @@ class EloquentPostRepository extends RepositoryAbstract implements PostRepositor
 
     public function entity() {
 
-        return Topic::class;
+        return Post::class;
+    }
+
+    public function createTopics($postId, array $properties)
+    {
+        return $this->find($postId)->topics()->sync($properties);
     }
 
     public function findBySlug($slug)
