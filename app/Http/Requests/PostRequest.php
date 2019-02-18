@@ -25,7 +25,8 @@ class PostRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255|unique:posts,title',
-            'topics' => 'required|array',
+            'featured_image' => 'required|mimes:jpeg,jpg,png',
+            'topics' => 'required',
             'body' => 'required|string',
         ];
     }

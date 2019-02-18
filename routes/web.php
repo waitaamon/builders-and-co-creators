@@ -26,5 +26,8 @@ Route::group(['middleware' => 'auth'], function (){
 
     //topics resource route
     Route::resource('topics', 'Admin\TopicController');
+
+    //slider images resource route
+    Route::resource('sliders', 'Admin\SliderImageController');
 });
 

@@ -8,15 +8,13 @@
                     {{ validation.title[0] }}
                 </div>
             </div>
-            <div class="custom-file my-3">
                 <div class="form-group" :class="{ 'is-invalid': validation.featured_image }">
-                    <input type="file" class="custom-file-input" id="customFile">
-                    <label class="custom-file-label" for="customFile">Choose featured image...</label>
+                    <label>Attach featured image</label>
+                    <input type="file" class="form-control" ref="featured_image" @change="addFeaturedImage()" placeholder="Choose featured image...">
                     <div class="invalid-feedback" v-if="validation.featured_image">
                         {{ validation.featured_image[0] }}
                     </div>
                 </div>
-            </div>
             <div class="row mb-4">
                 <div class="col-sm-8">
                     <multi-select :options="allTopics"
@@ -67,14 +65,15 @@
                form: {
                    title: '',
                    body: '',
-                   image: '',
+                   featured_image: '',
                    publish: true,
                    featured: false,
                    topics: []
                },
                 searchText: '',
                 lastSelectItem: {},
-                showModal: false
+                showModal: false,
+
             }
         },
         computed:{
@@ -92,8 +91,21 @@
                 this.form.topics = items
                 this.lastSelectItem = lastSelectItem
             },
+            addFeaturedImage() {
+                this.form.featured_image = this.$refs.featured_image.files[0];
+            },
             submit() {
-                this.createPost(this.form)
+
+                let formData = new FormData();
+
+                formData.append('title', this.form.title);
+                formData.append('body', this.form.body);
+                formData.append('publish', this.form.publish);
+                formData.append('featured', this.form.featured);
+                formData.append('topics', JSON.stringify(this.form.topics));
+                formData.append('featured_image', this.form.featured_image);
+
+                this.createPost(formData)
                     .then(() => {
                         this.$toast.success({
                             title:'Success',

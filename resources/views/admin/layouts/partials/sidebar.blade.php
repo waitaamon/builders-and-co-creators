@@ -35,22 +35,15 @@
     </li>
 
     <!-- Nav Item - Videos Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-wrench"></i>
-            <span>Videos</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">New Video</a>
-                <a class="collapse-item" href="#">All Videos</a>
-            </div>
-        </div>
+    <li class="nav-item active">
+        <a class="nav-link" href="#">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Videos</span></a>
     </li>
 
     <!-- Nav Item - Slider images Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ route('sliders') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Slider Images</span></a>
     </li>

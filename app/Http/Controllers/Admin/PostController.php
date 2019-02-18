@@ -68,9 +68,9 @@ class PostController extends Controller
             'title' => $request->title,
             'slug' => str_slug($request->title),
             'body' => $request->body,
-            'is_published' => $request->publish,
+            'is_published' => $request->publish ? 1 : 0,
             'publish_date' => $request->publish ? Carbon::now() : null,
-            'featured' => $request->featured
+            'featured' => $request->featured ? 1 : 0
         ]);
 
         if(!$post) {
@@ -83,9 +83,10 @@ class PostController extends Controller
             ], 422);
         }
 
-        $this->posts->createTopics($post->id, $this->extractedTopics($request->topics));
+        $this->posts->createTopics($post->id, $this->extractedTopics(json_decode($request->topics)));
 
         //save image
+        $post->addMedia($request->file('featured_image'))->toMediaCollection('posts');
 
         return response()->json([
             'message' => 'success'
@@ -143,7 +144,7 @@ class PostController extends Controller
         $tpcs = [];
 
         foreach ($topics as $topic) {
-            array_push($tpcs, $topic['value']);
+            array_push($tpcs, $topic->value);
         }
         return $tpcs;
     }
