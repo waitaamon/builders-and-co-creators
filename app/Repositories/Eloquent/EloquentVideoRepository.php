@@ -24,4 +24,9 @@ class EloquentVideoRepository extends RepositoryAbstract implements VideoReposit
     {
         return $this->findWhereFirst('slug', $slug);
     }
+
+    public function createTopics($videoId, array $properties)
+    {
+        return $this->find($videoId)->topics()->sync($properties);
+    }
 }

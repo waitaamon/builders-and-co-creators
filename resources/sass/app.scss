@@ -10,7 +10,9 @@
 @import '~bootstrap/scss/bootstrap';
 
 @import "site/index";
-
+.invalid-feedback {
+  display: block !important;
+}
 .required {
   color: red;
 }

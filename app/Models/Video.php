@@ -12,4 +12,9 @@ class Video extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function topics()
+    {
+        return $this->belongsToMany(Topic::class, 'topic_video');
+    }
 }

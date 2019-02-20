@@ -12,4 +12,6 @@ namespace App\Repositories\Contracts;
 interface VideoRepository
 {
     public function findBySlug($slug);
+
+    public function createTopics($videoId, array $properties);
 }

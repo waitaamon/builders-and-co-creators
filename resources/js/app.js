@@ -26,6 +26,9 @@ Vue.component('subscribe-form', require('./app/website/SubscribeForm.vue').defau
 //posts
 Vue.component('new-post', require('./app/admin/posts/components/NewPost.vue').default);
 
+//slider images
+Vue.component('new-slider-image', require('./app/admin/slider/components/NewSliderImage.vue').default);
+
 const app = new Vue({
     store,
     el: '#app'

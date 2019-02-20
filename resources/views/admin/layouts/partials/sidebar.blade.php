@@ -43,7 +43,7 @@
 
     <!-- Nav Item - Slider images Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('sliders') }}">
+        <a class="nav-link" href="{{ route('sliders.index') }}">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Slider Images</span></a>
     </li>

@@ -2,19 +2,37 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use function App\Helpers\extract_topics;
+use App\Http\Requests\VideoRequest;
+use App\Repositories\Contracts\VideoRepository;
 use App\Http\Controllers\Controller;
 
 class VideoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @var VideoRepository
+     */
+    protected $videos;
+
+    /**
+     * VideoController constructor.
+     * @param VideoRepository $videos
+     */
+    public function __construct(VideoRepository $videos)
+    {
+
+        $this->videos = $videos;
+    }
+
+    /**
+     * Display a listing of the videos.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $videos = '';
+        $videos = $this->videos->all();
+
         return view('admin.videos.index', compact('videos'));
     }
 
@@ -25,7 +43,7 @@ class VideoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.videos.create', compact('video'));
     }
 
     /**
@@ -34,9 +52,30 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(VideoRequest $request)
     {
-        //
+        $video = $this->videos->create([
+            'user_id' => auth()->id(),
+            'url' => $request->url,
+            'title' => $request->title,
+            'slug' => str_slug($request->title),
+        ]);
+
+        if(!$video) {
+            return response()->json([
+                'errors' => [
+                    'root' => [
+                        'Could not save video, try again later!'
+                    ]
+                ]
+            ], 422);
+        }
+
+        $this->videos->createTopics($video->id, extract_topics(json_decode($request->topics)));
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 
     /**
@@ -47,7 +86,9 @@ class VideoController extends Controller
      */
     public function show($id)
     {
-        //
+        $video = $this->videos->find($id);
+
+        return view('admin.videos.show', compact('video'));
     }
 
     /**
@@ -58,29 +99,61 @@ class VideoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $video = $this->videos->find($id);
+
+        return view('admin.videos.edit', compact('video'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified video in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(VideoRequest $request, $id)
     {
-        //
+        $video = $this->videos->update($id, [
+            'user_id' => auth()->id(),
+            'url' => $request->url,
+            'title' => $request->title,
+            'slug' => str_slug($request->title),
+        ]);
+
+        if(!$video) {
+            return response()->json([
+                'errors' => [
+                    'root' => [
+                        'Could not update video, try again later!'
+                    ]
+                ]
+            ], 422);
+        }
+
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified video from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        if(!$this->videos->delete($id)) {
+            return response()->json([
+                'errors' => [
+                    'root' => [
+                        'Could not delete video, try again later!'
+                    ]
+                ]
+            ], 422);
+        }
+        return response()->json([
+            'message' => 'success'
+        ], 200);
     }
 }

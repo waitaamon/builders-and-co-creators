@@ -10694,6 +10694,10 @@ a.text-dark:focus {
   background: #19ad92;
 }
 
+.invalid-feedback {
+  display: block !important;
+}
+
 .required {
   color: red;
 }
