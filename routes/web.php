@@ -29,5 +29,8 @@ Route::group(['middleware' => 'auth'], function (){
 
     //slider images resource route
     Route::resource('sliders', 'Admin\SliderImageController');
+
+    //videos resource route
+    Route::resource('videos', 'Admin\VideoController');
 });
 

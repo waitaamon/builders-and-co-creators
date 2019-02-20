@@ -29,6 +29,10 @@ Vue.component('new-post', require('./app/admin/posts/components/NewPost.vue').de
 //slider images
 Vue.component('new-slider-image', require('./app/admin/slider/components/NewSliderImage.vue').default);
 
+//videos
+Vue.component('new-video', require('./app/admin/videos/components/NewVideo.vue').default);
+Vue.component('all-videos', require('./app/admin/videos/components/AllVideos').default);
+
 const app = new Vue({
     store,
     el: '#app'

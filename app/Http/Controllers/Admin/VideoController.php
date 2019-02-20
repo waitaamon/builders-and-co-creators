@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use function App\Helpers\extract_topics;
 use App\Http\Requests\VideoRequest;
+use App\Http\Resources\VideoResource;
 use App\Repositories\Contracts\VideoRepository;
 use App\Http\Controllers\Controller;
 
@@ -31,9 +32,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = $this->videos->all();
-
-        return view('admin.videos.index', compact('videos'));
+        return view('admin.videos.index');
     }
 
     /**
@@ -56,7 +55,7 @@ class VideoController extends Controller
     {
         $video = $this->videos->create([
             'user_id' => auth()->id(),
-            'url' => $request->url,
+            'url' => $request->iframe,
             'title' => $request->title,
             'slug' => str_slug($request->title),
         ]);
@@ -71,7 +70,7 @@ class VideoController extends Controller
             ], 422);
         }
 
-        $this->videos->createTopics($video->id, extract_topics(json_decode($request->topics)));
+        $this->videos->createTopics($video->id, extract_topics($request->topics));
 
         return response()->json([
             'message' => 'success'
@@ -115,7 +114,7 @@ class VideoController extends Controller
     {
         $video = $this->videos->update($id, [
             'user_id' => auth()->id(),
-            'url' => $request->url,
+            'url' => $request->iframe,
             'title' => $request->title,
             'slug' => str_slug($request->title),
         ]);
@@ -130,9 +129,11 @@ class VideoController extends Controller
             ], 422);
         }
 
-        return response()->json([
-            'message' => 'success'
-        ], 200);
+        $this->videos->createTopics($id, extract_topics($request->topics));
+
+        $videos = $this->videos->all();
+
+        return response()->json(VideoResource::collection($videos), 200);
     }
 
     /**
@@ -152,8 +153,9 @@ class VideoController extends Controller
                 ]
             ], 422);
         }
-        return response()->json([
-            'message' => 'success'
-        ], 200);
+
+        $videos = $this->videos->all();
+
+        return response()->json(VideoResource::collection($videos), 200);
     }
 }

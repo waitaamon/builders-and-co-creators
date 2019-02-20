@@ -24,8 +24,8 @@ class VideoRequest extends FormRequest
     public function rules()
     {
         return [
-            'url' => 'required|url',
-            'title' => 'required|string|max:255',
+            'iframe' => 'required|string',
+            'title' => 'required|string|max:255|unique:videos,title,' . $this->id,
             'topics' => 'required'
         ];
     }
