@@ -37,4 +37,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Post::class);
     }
+
+    public function slider_images()
+    {
+        return $this->hasMany(SliderImage::class);
+    }
 }

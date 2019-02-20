@@ -111,7 +111,7 @@
                             title:'Success',
                             message:'Post successfully created'
                         })
-                        window.location.href = "/posts";
+                        window.location.href = '/posts'
                     })
             }
         },

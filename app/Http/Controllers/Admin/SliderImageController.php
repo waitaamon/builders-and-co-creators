@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\SliderImageRequest;
 use App\Repositories\Contracts\ImageSliderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,9 +31,7 @@ class SliderImageController extends Controller
      */
     public function index()
     {
-        $images = $this->images->all();
-
-        return view('admin.slider-images.index', compact('images'));
+        return view('admin.slider-images.index');
     }
 
     /**
@@ -42,7 +41,7 @@ class SliderImageController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.slider-images.create');
     }
 
     /**
@@ -52,17 +51,16 @@ class SliderImageController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(SliderImageRequest $request)
     {
-        $this->validate($request, [
-            'slider_image' => 'required|mimes:jpeg,jpg,png',
-            'order' => 'required|integer'
-        ]);
 
         $image = $this->images->create([
             'user_id' => auth()->id(),
             'order' => $request->order,
-            'identifier' => str_random()
+            'identifier' => str_random(),
+            'title' => $request->title,
+            'sub_title' => $request->sub_title,
+            'url' => $request->url,
         ]);
 
         if(!$image) {
@@ -75,7 +73,7 @@ class SliderImageController extends Controller
             ],422);
         }
 
-        $image->addMedia($request->file('image'))->toMediaCollection('sliders');
+        $image->addMedia($request->file('slider_image'))->toMediaCollection('sliders');
 
         return response()->json([
             'message' => 'success'

@@ -1,50 +1,45 @@
 <template>
-    <div>
-        <!-- Button trigger modal -->
-        <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal" data-target="#newSliderImageModal">
-            <i class="fas fa-plus-circle fa-sm text-white-50"></i> New Slider Image
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="newSliderImageModal" tabindex="-1" role="dialog" aria-labelledby="newSliderImageModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="newSliderImageModalLabel">New slider image</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form method="post" @submit.prevent="submit">
-                        <div class="modal-body">
-                            <div class="form-group is-invalid" :class="{ 'is-invalid': validation.slider_image}">
-                                <label class="form-control-label" for="image">Attach slider image</label>
-                                <input type="file" class="form-control" ref="slider_image" id="image" placeholder="Attach image" required>
-                                <div class="invalid-feedback" v-if="validation.slider_image">
-                                    {{validation.slider_image[0]}}
-                                </div>
-                            </div>
-                            {{ validation }}
-                            <div class="form-group" :class="{ 'has-error': validation.order}">
-                                <label class="form-control-label" for="image">Image order</label>
-                                <select class="form-control" v-model="form.order" required :class="{ 'is-invalid': validation.order }">
-                                    <option value="" disabled>Select order</option>
-                                    <option v-for="order in orders" :value="order" disabled >{{ order }}</option>
-                                </select>
-                                <div class="invalid-feedback" v-if="validation.order">
-                                    {{validation.order[0]}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn">Upload Image</button>
-                        </div>
-                    </form>
+    <form method="post" @submit.prevent="submit">
+           <div class="form-group is-invalid" >
+                <label class="form-control-label" for="image">Attach slider image</label>
+                <input type="file" class="form-control" :class="{ 'is-invalid': validation.slider_image}" ref="slider_image" @change="addSliderImage" id="image" placeholder="Attach image">
+                <div class="invalid-feedback" v-if="validation.slider_image">
+                    {{validation.slider_image[0]}}
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="form-group">
+                <label class="form-control-label" for="image">Image title</label>
+                <input type="text" class="form-control" :class="{ 'is-invalid': validation.title}" v-model="form.title" placeholder="Enter title ...">
+                <div class="invalid-feedback" v-if="validation.title">
+                    {{validation.title[0]}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="image">Image sub title</label>
+                <input type="text" class="form-control" :class="{ 'is-invalid': validation.sub_title}" v-model="form.sub_title" placeholder="Enter sub title ...">
+                <div class="invalid-feedback" v-if="validation.sub_title">
+                    {{validation.sub_title[0]}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="image">Image url</label>
+                <input type="url" class="form-control" :class="{ 'is-invalid': validation.url}" v-model="form.url" placeholder="Enter url ...">
+                <div class="invalid-feedback" v-if="validation.url">
+                    {{validation.url[0]}}
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="image">Image order</label>
+                <select class="form-control" :class="{ 'is-invalid': validation.order}" v-model="form.order">
+                    <option value="" disabled>Select order</option>
+                    <option v-for="order in orders" :value="order" >{{ order }}</option>
+                </select>
+                <div class="invalid-feedback" v-if="validation.order">
+                    {{validation.order[0]}}
+                </div>
+            </div>
+        <button type="submit" class="btn btn-primary btn-user">Upload Image</button>
+    </form>
 </template>
 
 <script>
@@ -56,7 +51,10 @@
                 orders: [1,2,3,4,5],
                 form: {
                     slider_image: '',
-                    order: ''
+                    order: '',
+                    title: '',
+                    sub_title: '',
+                    url: ''
                 }
             }
         },
@@ -77,6 +75,9 @@
 
                 formData.append('slider_image', this.form.slider_image)
                 formData.append('order', this.form.order)
+                formData.append('title', this.form.title)
+                formData.append('sub_title', this.form.sub_title)
+                formData.append('url', this.form.url)
 
                 this.createImage(formData)
                     .then(() => {
@@ -85,11 +86,11 @@
                             message:'Image successfully created'
                         })
                         this.reset()
-                        $('#newSliderImageModal').modal('toggle')
+                        window.location.href = '/sliders'
                     })
             },
             reset () {
-                this.form = { slider_image: '', order: ''}
+                this.form = { slider_image: '', order: '', title: '', sub_title: '', url: ''}
             }
         }
     }
