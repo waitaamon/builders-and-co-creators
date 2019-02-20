@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\SliderImageRequest;
+use App\Http\Resources\SliderImageResource;
 use App\Repositories\Contracts\ImageSliderRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -47,13 +48,11 @@ class SliderImageController extends Controller
     /**
      * Store a newly created image in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param SliderImageRequest $request
      * @return \Illuminate\Http\Response
-     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(SliderImageRequest $request)
     {
-
         $image = $this->images->create([
             'user_id' => auth()->id(),
             'order' => $request->order,
@@ -109,11 +108,29 @@ class SliderImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SliderImageRequest $request, $id)
     {
-        return response()->json([
-            'message' => 'success'
-        ],200);
+        $image = $this->images->update($id, [
+            'user_id' => auth()->id(),
+            'order' => $request->order,
+            'title' => $request->title,
+            'sub_title' => $request->sub_title,
+            'url' => $request->url
+        ]);
+
+        if(!$image) {
+            return response()->json([
+                'errors' => [
+                    'root' => [
+                        'Could not save, try again later'
+                    ]
+                ]
+            ],422);
+        }
+
+        $images = $this->images->all();
+
+        return response()->json(SliderImageResource::collection($images),200);
     }
 
     /**
@@ -124,9 +141,9 @@ class SliderImageController extends Controller
      */
     public function destroy($id)
     {
-        $image = $this->images->find($id)->delete();
+        $image = $this->images->find($id);
 
-        if(!$image) {
+        if(!$image->delete()) {
             return response()->json([
                 'errors' => [
                     'root' => [
@@ -136,8 +153,8 @@ class SliderImageController extends Controller
             ],422);
         }
 
-        return response()->json([
-            'message' => 'success'
-        ],200);
+        $images = $this->images->all();
+
+        return response()->json(SliderImageResource::collection($images),200);
     }
 }

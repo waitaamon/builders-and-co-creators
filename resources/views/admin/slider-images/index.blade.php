@@ -9,5 +9,16 @@
             <h1 class="h3 mb-0 text-gray-800">Slider images</h1>
             <a href="{{ route('sliders.create') }}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm text-white-50"></i> New Slider Image</a>
         </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card shadow mb-4">
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <all-slider-images></all-slider-images>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

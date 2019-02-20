@@ -27,6 +27,7 @@ Vue.component('subscribe-form', require('./app/website/SubscribeForm.vue').defau
 Vue.component('new-post', require('./app/admin/posts/components/NewPost.vue').default);
 
 //slider images
+Vue.component('all-slider-images', require('./app/admin/slider/components/AllSliderImages.vue').default);
 Vue.component('new-slider-image', require('./app/admin/slider/components/NewSliderImage.vue').default);
 
 //videos

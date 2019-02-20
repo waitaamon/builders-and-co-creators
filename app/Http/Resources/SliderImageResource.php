@@ -14,6 +14,18 @@ class SliderImageResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'identifier' => $this->identifier,
+            'title' => $this->title,
+            'sub_title' => $this->sub_title,
+            'url' => $this->url,
+            'order' => $this->order,
+            'image_url' => $this->when($this !== null, function () {
+                $items = $this->media;
+                return $items[0]->getFullUrl();
+            }),
+        ];
     }
 }
