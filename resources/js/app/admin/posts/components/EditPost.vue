@@ -39,7 +39,7 @@
                 <div class="col-sm-6">
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-primary btn-user btn-block" type="submit">Create Article</button>
+                    <button class="btn btn-primary btn-user btn-block" type="submit">Update Article</button>
                 </div>
             </div>
         </form>
@@ -55,7 +55,7 @@
     import { mapGetters, mapActions } from 'vuex'
     export default {
         name: 'edit-post',
-        props: ['post'],
+        props: ['post_id'],
         components: {
             tinymce,
             MultiSelect,
@@ -81,14 +81,31 @@
         computed:{
             ...mapGetters({
                 validation: 'getValidationErrors',
-                allTopics: 'topic/topics',
+                post: 'post/post',
+                allTopics: 'topic/topics'
             })
+        },
+        watch: {
+            post: function (val) {
+                if(val !== null) {
+                    this.form.title = this.post.title
+                    this.form.topics = this.post.topics
+
+                    setTimeout(() => {
+                        this.form.body = this.post.body
+                    }, 1000)
+                }
+            }
         },
         methods: {
             ...mapActions({
                 updatePost: 'post/updatePost',
+                getPost: 'post/getPost',
                 getTopics: 'topic/getTopics'
             }),
+            getSelectedPost(id) {
+              this.getPost(id)
+            },
             onSelect (items, lastSelectItem) {
                 this.form.topics = items
                 this.lastSelectItem = lastSelectItem
@@ -117,11 +134,9 @@
                     })
             }
         },
-        mounted () {
-
-        },
         created () {
             this.getTopics()
+            this.getSelectedPost(this.post_id)
         }
     }
 </script>

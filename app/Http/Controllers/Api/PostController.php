@@ -22,6 +22,10 @@ class PostController extends Controller
         $this->posts = $posts;
     }
 
+    /**
+     * json posts
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
 
@@ -29,4 +33,18 @@ class PostController extends Controller
 
         return response()->json(PostResource::collection($posts), 200);
     }
+
+    /**
+     * Return post
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function show($id)
+    {
+
+        $post = $this->posts->find($id);
+
+        return response()->json(new PostResource($post), 200);
+    }
+
 }

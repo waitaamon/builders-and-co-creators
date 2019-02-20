@@ -15,6 +15,14 @@ export const getPosts = ({ commit }) => {
         })
 }
 
+export const getPost = ({ commit }, id) => {
+
+    return axios.get('/api/post/' + id)
+        .then(response => {
+            commit('setPost', response.data)
+        })
+}
+
 export const deletePost = ({ commit }, id) => {
 
     return axios.delete('/posts/' + id)

@@ -112,7 +112,7 @@ class PostController extends Controller
     {
         $post = $this->posts->find($id);
 
-        return view('admin.post.edit', compact('post'));
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
