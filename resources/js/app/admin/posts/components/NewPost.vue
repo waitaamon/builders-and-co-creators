@@ -68,6 +68,7 @@
                    featured_image: '',
                    publish: true,
                    featured: false,
+                   action: 'new',
                    topics: []
                },
                 searchText: '',
@@ -102,6 +103,7 @@
                 formData.append('body', this.form.body);
                 formData.append('publish', this.form.publish);
                 formData.append('featured', this.form.featured);
+                formData.append('action', this.form.action);
                 formData.append('topics', JSON.stringify(this.form.topics));
                 formData.append('featured_image', this.form.featured_image);
 

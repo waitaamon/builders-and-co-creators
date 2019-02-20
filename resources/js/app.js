@@ -24,7 +24,9 @@ Vue.component('subscribe-form', require('./app/website/SubscribeForm.vue').defau
 
 /*Admin components*/
 //posts
+Vue.component('all-posts', require('./app/admin/posts/components/AllPosts.vue').default);
 Vue.component('new-post', require('./app/admin/posts/components/NewPost.vue').default);
+Vue.component('edit-post', require('./app/admin/posts/components/EditPost.vue').default);
 
 //slider images
 Vue.component('all-slider-images', require('./app/admin/slider/components/AllSliderImages.vue').default);
@@ -33,6 +35,7 @@ Vue.component('new-slider-image', require('./app/admin/slider/components/NewSlid
 //videos
 Vue.component('new-video', require('./app/admin/videos/components/NewVideo.vue').default);
 Vue.component('all-videos', require('./app/admin/videos/components/AllVideos').default);
+
 
 const app = new Vue({
     store,
