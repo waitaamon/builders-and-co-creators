@@ -84,6 +84,7 @@
                 formData.append('title', this.form.title)
                 formData.append('sub_title', this.form.sub_title)
                 formData.append('url', this.form.url)
+                formData.append('action', this.form.action)
 
                 this.createImage(formData)
                     .then(() => {
@@ -92,7 +93,10 @@
                             message: 'Image successfully created'
                         })
                         this.reset()
-                        window.location.href = '/sliders'
+                        setTimeout(() => {
+                            window.location.href = '/sliders'
+                        }, 1000)
+
                     })
             },
             reset() {

@@ -8,13 +8,6 @@
                     {{ validation.title[0] }}
                 </div>
             </div>
-            <div class="form-group" :class="{ 'is-invalid': validation.featured_image }">
-                <label>Attach featured image</label>
-                <input type="file" class="form-control" ref="featured_image" @change="addFeaturedImage()" placeholder="Choose featured image...">
-                <div class="invalid-feedback" v-if="validation.featured_image">
-                    {{ validation.featured_image[0] }}
-                </div>
-            </div>
             <div class="row mb-4">
                 <div class="col-sm-8">
                     <multi-select :options="allTopics"
@@ -64,9 +57,9 @@
         data () {
             return {
                 form: {
+                    id: '',
                     title: '',
                     body: '',
-                    featured_image: '',
                     publish: true,
                     featured: false,
                     action: 'update',
@@ -88,6 +81,7 @@
         watch: {
             post: function (val) {
                 if(val !== null) {
+                    this.form.id = this.post.id
                     this.form.title = this.post.title
                     this.form.topics = this.post.topics
 
@@ -110,27 +104,16 @@
                 this.form.topics = items
                 this.lastSelectItem = lastSelectItem
             },
-            addFeaturedImage() {
-                this.form.featured_image = this.$refs.featured_image.files[0];
-            },
             submit() {
-                let formData = new FormData();
-
-                formData.append('title', this.form.title);
-                formData.append('body', this.form.body);
-                formData.append('publish', this.form.publish);
-                formData.append('featured', this.form.featured);
-                formData.append('action', this.form.action);
-                formData.append('topics', JSON.stringify(this.form.topics));
-                formData.append('featured_image', this.form.featured_image);
-
-                this.updatePost(formData)
+                this.updatePost(this.form)
                     .then(() => {
                         this.$toast.success({
                             title:'Success',
                             message:'Post successfully updated'
                         })
-                        window.location.href = '/posts'
+                        setTimeout(() => {
+                            window.location.href = '/posts'
+                        },1000 )
                     })
             }
         },

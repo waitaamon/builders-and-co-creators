@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use phpDocumentor\Reflection\Types\This;
 
 class PostRequest extends FormRequest
 {
@@ -25,7 +26,7 @@ class PostRequest extends FormRequest
     {
         return [
             'action' => 'required|string',
-            'title' => 'required|string|max:255|unique:posts,title',
+            'title' => 'required|string|max:255|unique:posts,title,' . $this->id,
             'featured_image' => 'required_if:action,new|mimes:jpeg,jpg,png',
             'topics' => 'required',
             'body' => 'required|string',

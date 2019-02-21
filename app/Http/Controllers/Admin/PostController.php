@@ -124,7 +124,7 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, $id)
     {
-        $post = $this->posts->create($id, [
+        $post = $this->posts->update($id, [
             'user_id' => auth()->id(),
             'title' => $request->title,
             'slug' => str_slug($request->title),
@@ -144,10 +144,7 @@ class PostController extends Controller
             ], 422);
         }
 
-        $this->posts->createTopics($post->id, extract_topics($request->topics));
-
-        //save image
-       // $post->addMedia($request->file('featured_image'))->toMediaCollection('posts');
+        $this->posts->createTopics($id, extract_topics($request->topics));
 
         return response()->json([
             'message' => 'success'

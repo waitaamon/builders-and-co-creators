@@ -19,8 +19,9 @@ const toastrConfigs = {
 }
 Vue.use(CxltToastr, toastrConfigs)
 
-Vue.component('carousel-component', require('./app/website/CarouselComponent.vue').default);
-Vue.component('subscribe-form', require('./app/website/SubscribeForm.vue').default);
+//frontend
+Vue.component('image-slider', require('./app/website/components/ImageSlider.vue').default);
+Vue.component('subscribe-form', require('./app/website/components/SubscribeForm.vue').default);
 
 /*Admin components*/
 //posts

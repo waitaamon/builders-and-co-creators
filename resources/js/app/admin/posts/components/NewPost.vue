@@ -113,7 +113,9 @@
                             title:'Success',
                             message:'Post successfully created'
                         })
-                        window.location.href = '/posts'
+                        setTimeout(() => {
+                            window.location.href = '/posts'
+                        },1000 )
                     })
             }
         },

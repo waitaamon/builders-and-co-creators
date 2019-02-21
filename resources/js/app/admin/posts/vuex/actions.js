@@ -23,6 +23,11 @@ export const getPost = ({ commit }, id) => {
         })
 }
 
+export const updatePost = ({ commit }, payload) => {
+
+    return axios.patch('/posts/' + payload.id, payload)
+}
+
 export const deletePost = ({ commit }, id) => {
 
     return axios.delete('/posts/' + id)
