@@ -59,6 +59,12 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
         return $this->entity->paginate($perPage);
     }
 
+    public function findWherePaginate($column, $value, $perPage = 10)
+    {
+
+        return $this->entity->where($column, $value)->paginate($perPage);
+    }
+
     public function create(array $properties)
     {
 

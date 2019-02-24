@@ -30,6 +30,14 @@
             <hr>
             <div class="row">
                 <div class="col-sm-6">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="publish" v-model="form.publish">
+                        <label class="custom-control-label" for="publish">Publish now?</label>
+                    </div>
+                    <div class="custom-control custom-switch mt-3">
+                        <input type="checkbox" class="custom-control-input" id="feature" v-model="form.featured">
+                        <label class="custom-control-label" for="feature">Mark as featured</label>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <button class="btn btn-primary btn-user btn-block" type="submit">Update Article</button>
@@ -60,7 +68,7 @@
                     id: '',
                     title: '',
                     body: '',
-                    publish: true,
+                    publish: false,
                     featured: false,
                     action: 'update',
                     topics: []
@@ -84,6 +92,8 @@
                     this.form.id = this.post.id
                     this.form.title = this.post.title
                     this.form.topics = this.post.topics
+                    this.form.publish = this.post.is_published
+                    this.form.featured = this.post.featured
 
                     setTimeout(() => {
                         this.form.body = this.post.body
@@ -112,7 +122,7 @@
                             message:'Post successfully updated'
                         })
                         setTimeout(() => {
-                            window.location.href = '/posts'
+                           window.location.href = '/posts'
                         },1000 )
                     })
             }

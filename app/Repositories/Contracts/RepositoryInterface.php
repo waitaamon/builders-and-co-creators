@@ -13,6 +13,8 @@ interface RepositoryInterface
 {
     public function all();
 
+    public function count();
+
     public function find($id);
 
     public function findWhere($column, $value);
@@ -20,6 +22,8 @@ interface RepositoryInterface
     public function findWhereFirst($column, $value);
 
     public function paginate($perPage = 10);
+
+    public function findWherePaginate($column, $value, $perPage = 10);
 
     public function create(array  $properties);
 

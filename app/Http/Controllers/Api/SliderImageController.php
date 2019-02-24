@@ -27,7 +27,7 @@ class SliderImageController extends Controller
 
     public function index()
     {
-        $images = $this->images->withCriteria(new OrderBy())->all();
+        $images = $this->images->withCriteria(new OrderBy('order', 'desc'))->all();
 
         return response()->json(SliderImageResource::collection($images),200);
     }

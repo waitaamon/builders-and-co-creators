@@ -36,7 +36,7 @@ class HomeController extends Controller
     {
         $posts = $this->posts->withCriteria(
             new EagerLoad(['topics'])
-        )->paginate(6);
+        )->findWhere('is_published', 1, 6);
 
         $videos = $this->videos->withCriteria(
             new EagerLoad(['topics'])

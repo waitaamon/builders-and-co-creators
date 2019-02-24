@@ -37,6 +37,14 @@
             <hr>
             <div class="row">
                 <div class="col-sm-6">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="publish" v-model="form.publish">
+                        <label class="custom-control-label" for="publish">Publish now?</label>
+                    </div>
+                    <div class="custom-control custom-switch mt-3">
+                        <input type="checkbox" class="custom-control-input" id="feature" v-model="form.featured">
+                        <label class="custom-control-label" for="feature">Mark as featured</label>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <button class="btn btn-primary btn-user btn-block" type="submit">Create Article</button>
@@ -66,7 +74,7 @@
                    title: '',
                    body: '',
                    featured_image: '',
-                   publish: true,
+                   publish: false,
                    featured: false,
                    action: 'new',
                    topics: []
