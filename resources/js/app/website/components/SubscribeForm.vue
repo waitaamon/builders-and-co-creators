@@ -1,16 +1,48 @@
 <template>
-    <form class="form-inline">
-        <div class="form-group mb-2">
-            <label for="email" class="sr-only">Email</label>
-            <input type="email" readonly class="form-control" id="email" value="email@example.com">
-        </div>
-        <button type="submit" class="btn btn-success ml-1 mb-2">SUBSCRIBE</button>
-    </form>
+    <div class="subscribe-form">
+        <form id="mc-form" class="group" @submit.prevent="submit">
+
+            <input type="email" class="email" id="mc-email" placeholder="Email Address" required v-model="form.email">
+
+            <input type="submit" value="Send">
+
+            <label for="mc-email" class="subscribe-message" v-if="validation.email">{{ validation.email[0] }}</label>
+
+        </form>
+    </div>
 </template>
 
 <script>
+    import { mapGetters, mapActions } from 'vuex'
     export default {
-        name: 'subscribe-form'
+        name: 'subscribe-form',
+        data() {
+            return {
+                form: {
+                    email: ''
+                }
+            }
+        },
+        computed: {
+            ...mapGetters({
+                validation: 'getValidationErrors'
+            })
+        },
+        methods: {
+            ...mapActions({
+                subscribe: 'web/subscribe'
+            }),
+            submit() {
+                this.subscribe(this.form)
+                    .then(() => {
+                        this.form.email = ''
+                        this.$toast.success({
+                            title: 'Success',
+                            message: 'Successfully subscribed to our newsletter.'
+                        })
+                    })
+            }
+        }
     }
 </script>
 

@@ -13,6 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 
+//subscribe to newsletter
+Route::post('/subscribe-to-newsletter', 'NewsLetterController@store')->name('subscribe');
+
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function (){
