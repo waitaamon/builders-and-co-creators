@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\SliderImageResource;
 use App\Repositories\Contracts\ImageSliderRepository;
 use App\Repositories\Eloquent\Criteria\EagerLoad;
+use App\Repositories\Eloquent\Criteria\OrderBy;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,7 +27,7 @@ class SliderImageController extends Controller
 
     public function index()
     {
-        $images = $this->images->all();
+        $images = $this->images->withCriteria(new OrderBy())->all();
 
         return response()->json(SliderImageResource::collection($images),200);
     }

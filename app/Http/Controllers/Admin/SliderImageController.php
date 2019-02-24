@@ -53,6 +53,9 @@ class SliderImageController extends Controller
      */
     public function store(SliderImageRequest $request)
     {
+        //check order and change
+        $this->changeOrder($request->order);
+
         $image = $this->images->create([
             'user_id' => auth()->id(),
             'order' => $request->order,
@@ -110,6 +113,9 @@ class SliderImageController extends Controller
      */
     public function update(SliderImageRequest $request, $id)
     {
+        //check order and change
+        $this->changeOrder($request->order);
+
         $image = $this->images->update($id, [
             'user_id' => auth()->id(),
             'order' => $request->order,
@@ -156,5 +162,17 @@ class SliderImageController extends Controller
         $images = $this->images->all();
 
         return response()->json(SliderImageResource::collection($images),200);
+    }
+
+    protected function changeOrder($order)
+    {
+        $img = $this->images->findWhere('order', $order);
+
+        if($img)
+        {
+            $this->images->update($img->id, ['order' => '']);
+        }
+
+        return true;
     }
 }

@@ -35,7 +35,7 @@
     </li>
 
     <!-- Nav Item - Videos Collapse Menu -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="{{ route('videos.index') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Videos</span></a>
