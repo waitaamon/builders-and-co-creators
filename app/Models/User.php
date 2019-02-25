@@ -2,6 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Directory\Profession\{ArchitectBody,
+    ContractorType,
+    EngineerBody,
+    EngineerType,
+    Profession,
+    ProfessionalBody,
+    SupplierItem,
+    WorkerType};
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'phone', 'id_number', 'fb_name',
     ];
 
     /**
@@ -42,5 +50,45 @@ class User extends Authenticatable
     public function slider_images()
     {
         return $this->hasMany(SliderImage::class);
+    }
+
+    public function professions()
+    {
+        return $this->belongsToMany(Profession::class, 'profession_user');
+    }
+
+    public function contractor_types()
+    {
+        return $this->belongsToMany(ContractorType::class, 'contractor_user');
+    }
+
+    public function worker_types()
+    {
+        return $this->belongsToMany(WorkerType::class, 'user_worker_type');
+    }
+
+    public function professional_bodies()
+    {
+        return $this->belongsToMany(ProfessionalBody::class, 'professional_body_user');
+    }
+
+    public function supplier_items()
+    {
+        return $this->belongsToMany(SupplierItem::class, 'supplier_item_user');
+    }
+
+    public function engineer_types()
+    {
+        return $this->belongsToMany(EngineerType::class, 'engineer_type_user');
+    }
+
+    public function engineer_bodies()
+    {
+        return $this->belongsToMany(EngineerBody::class, 'engineer_body_user');
+    }
+
+    public function architect_bodies()
+    {
+        return $this->belongsToMany(ArchitectBody::class, 'architect_body_user');
     }
 }
