@@ -50,7 +50,7 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
     public function findWhereFirst($column, $value)
     {
 
-        return $this->entity->where($column, $value)->firstOrFail();
+        return $this->entity->where($column, $value)->first();
     }
 
     public function paginate($perPage = 10)

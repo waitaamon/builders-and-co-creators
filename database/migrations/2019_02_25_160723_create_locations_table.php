@@ -23,9 +23,9 @@ class CreateLocationsTable extends Migration
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('country_id')->references('id')->on('country')->onDelete('cascade');
-            $table->foreign('county_id')->references('id')->on('county')->onDelete('cascade');
-            $table->foreign('sub_county_id')->references('id')->on('sub_county')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('county_id')->references('id')->on('counties')->onDelete('cascade');
+            $table->foreign('sub_county_id')->references('id')->on('sub_counties')->onDelete('cascade');
         });
     }
 

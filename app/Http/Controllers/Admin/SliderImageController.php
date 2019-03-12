@@ -166,7 +166,7 @@ class SliderImageController extends Controller
 
     protected function changeOrder($order)
     {
-        $img = $this->images->findWhere('order', $order);
+        $img = $this->images->findWhereFirst('order', $order);
 
         if($img)
         {

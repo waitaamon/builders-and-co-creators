@@ -1,3 +1,4 @@
+#BUILDERS & CO-CREATORS SERVER
 db_name: builder2_co_creators
 db_user: builder2_builder
 db:password: W-!e%N^DvNf_

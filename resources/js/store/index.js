@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
 
+import auth from '../app/auth/vuex'
 import post from '../app/admin/posts/vuex'
 import topic from '../app/admin/topics/vuex'
 import slider from '../app/admin/slider/vuex'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     actions,
     getters,
     modules: {
+        auth,
         post,
         topic,
         slider,

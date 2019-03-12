@@ -6,9 +6,11 @@ use App\Repositories\Contracts\{ImageSliderRepository,
     NewLetterEmailRepository,
     PostRepository,
     TopicRepository,
+    UserDirectoryRepository,
     UserRepository,
     VideoRepository};
-use App\Repositories\Eloquent\{EloquentImageSliderRepository,
+use App\Repositories\Eloquent\{Directory\EloquentProfessionRepository,
+    EloquentImageSliderRepository,
     EloquentNewsLetterEmailRepository,
     EloquentPostRepository,
     EloquentTopicRepository,
@@ -31,6 +33,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PostRepository::class, EloquentPostRepository::class);
         $this->app->bind(VideoRepository::class, EloquentVideoRepository::class);
         $this->app->bind(NewLetterEmailRepository::class, EloquentNewsLetterEmailRepository::class);
+        $this->app->bind(UserDirectoryRepository::class, EloquentProfessionRepository::class);
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Directory\Location;
 use App\Models\Directory\Profession\{ArchitectBody,
     ContractorType,
     EngineerBody,
@@ -50,6 +51,11 @@ class User extends Authenticatable
     public function slider_images()
     {
         return $this->hasMany(SliderImage::class);
+    }
+
+    public function location()
+    {
+        return $this->hasOne(Location::class);
     }
 
     public function professions()

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContarctorTypesTable extends Migration
+class CreateContractorTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -28,6 +28,6 @@ class CreateContarctorTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contarctor_types');
+        Schema::dropIfExists('contractor_types');
     }
 }

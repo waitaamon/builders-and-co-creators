@@ -11,7 +11,13 @@
         </div>
     </section>
     <!-- end s-featured -->
-
+    <section class="s-content">
+        <div class="row entries-wrap wide">
+            <div class="col text-center">
+                <a href="{{ route('register') }}" class="btn btn-primary btn-outline-primary text-uppercase">Create Account</a>
+            </div>
+        </div>
+    </section>
     <!-- s-content
    ================================================== -->
     <section class="s-content">

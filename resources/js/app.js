@@ -23,6 +23,9 @@ Vue.use(CxltToastr, toastrConfigs)
 Vue.component('image-slider', require('./app/website/components/ImageSlider.vue').default);
 Vue.component('subscribe-form', require('./app/website/components/SubscribeForm.vue').default);
 
+//auth
+Vue.component('user-registration', require('./app/auth/components/Registration.vue').default);
+
 /*Admin components*/
 //posts
 Vue.component('all-posts', require('./app/admin/posts/components/AllPosts.vue').default);
