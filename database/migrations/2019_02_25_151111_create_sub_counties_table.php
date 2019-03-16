@@ -18,6 +18,7 @@ class CreateSubCountiesTable extends Migration
             $table->integer('county_id')->unsigned();
             $table->string('name');
             $table->timestamps();
+
             $table->foreign('county_id')->references('id')->on('counties')->onDelete('cascade');
         });
     }

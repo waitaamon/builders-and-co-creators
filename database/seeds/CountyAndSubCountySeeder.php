@@ -131,6 +131,7 @@ class CountyAndSubCountySeeder extends Seeder
     },
     {
         "name": "Kajiado",
+        "capital": "kajiado",
         "code": 34,
         "sub_counties": [
         "Isinya.",
@@ -223,7 +224,16 @@ class CountyAndSubCountySeeder extends Seeder
         "capital": "Kisii",
         "code": 45,
         "sub_counties": [
-
+            "Gucha",
+            "Gucha South",
+            "Kenyenya",
+            "Kisii central",
+            "Kisii south",
+            "Masaba south",
+            "Kitutu Central",
+            "Marani",
+            "Nyamache",
+            "Sameta"
     ]
     },
     {
@@ -536,7 +546,7 @@ class CountyAndSubCountySeeder extends Seeder
     ]
     },
     {
-        "name": "Taita - Taveta",
+        "name": "Taita-Taveta",
         "capital": "Voi",
         "code": 6,
         "sub_counties": [
@@ -557,7 +567,7 @@ class CountyAndSubCountySeeder extends Seeder
     ]
     },
     {
-        "name": "Tharaka - Nithi",
+        "name": "Tharaka-Nithi",
         "capital": "Chuka",
         "code": 13,
         "sub_counties": [
@@ -570,7 +580,7 @@ class CountyAndSubCountySeeder extends Seeder
     ]
     },
     {
-        "name": "Trans - Nzoia",
+        "name": "Trans-Nzoia",
         "capital": "Kitale",
         "code": 26,
         "sub_counties": [
@@ -643,9 +653,24 @@ class CountyAndSubCountySeeder extends Seeder
     ]
     }
 ]';
-        foreach (json_decode($json_data) as $key => $value) {
+        $data = json_decode($json_data);
 
-            $county = new \App\Models\Directory\County();
+
+
+        foreach ($data as $county) {
+            $cnty = new \App\Models\Directory\County();
+            $cnty->country_id = 104;
+            $cnty->name = $county->name;
+            $cnty->capital = $county->capital;
+            $cnty->code = $county->code;
+            $cnty->save();
+
+            foreach ($county->sub_counties as $sub) {
+                $sub_county = new \App\Models\Directory\SubCounty();
+                $sub_county->county_id = $cnty->id;
+                $sub_county->name = $sub;
+                $sub_county->save();
+            }
         }
     }
 }

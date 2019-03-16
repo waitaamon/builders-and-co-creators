@@ -51,62 +51,34 @@ class UserDirectoryController extends Controller
     }
 
     /**
-     * Store personal details
+     * Validate personal details
      * @param PersonalDetailsRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function personal_details(PersonalDetailsRequest $request)
+    public function validate_personal_details(PersonalDetailsRequest $request)
     {
-        $user = $this->users->create($request->all());
-
-        if(!$user) {
-            return response()->json([
-                'errors' => [
-                    'root' => [
-                        'Could not create user, try again later'
-                    ]
-                ]
-            ], 422);
-        }
-        return response()->json(new UserResource($user), 200);
+        return response()->json(['message' => 'success'], 200);
     }
 
     /**
-     * Store user location details
+     * Validate location details
      * @param LocationRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function location(LocationRequest $request) {
-
-        $location = $this->users->createLocation($request->userId, [
-            'country_id' => $request->country,
-            'county_id' => $request->county,
-            'sub_county_id' => $request->sub_county,
-            'state' => $request->state
-        ]);
-
-        if(!$location) {
-            return response()->json([
-                'errors' => [
-                    'root' => [
-                        'Could not create user location, try again later!'
-                    ]
-                ]
-            ], 422);
-        }
-        return response()->json([
-            'message' => 'success'
-        ], 200);
+    public function validate_location_details(LocationRequest $request)
+    {
+        return response()->json(['message' => 'success'], 200);
     }
+
 
     /**
      *Store user profession details
      * @param ProfessionRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function profession(ProfessionRequest $request)
+    public function validate_profession(ProfessionRequest $request)
     {
-
+        return response()->json(['message' => 'success'], 200);
     }
 
     /**

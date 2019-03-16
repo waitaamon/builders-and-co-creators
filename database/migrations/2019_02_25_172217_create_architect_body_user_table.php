@@ -17,6 +17,7 @@ class CreateArchitectBodyUserTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('architect_body_id')->unsigned();
+            $table->string('reg_no')->nullable();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('architect_body_id')->references('id')->on('architect_bodies')->onDelete('cascade');

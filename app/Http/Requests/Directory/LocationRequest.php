@@ -25,9 +25,18 @@ class LocationRequest extends FormRequest
     {
         return [
             'country' => 'required|integer|exists:countries,id',
-            'county' => 'required|integer|exists:counties,id',
-            'sub_county' => 'required|integer|exists:sub_counties,id',
-            'state' => 'required_unless:country,254|string|max:100'
+            'county' => 'required_if:country,104',
+            'sub_county' => 'required_if:country,104',
+            'state' => 'required_unless:country,104'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'state.required_unless' => 'State field is required.',
+            'county.required_if' => 'Select at least one county.',
+            'sub_county.required_if' => 'Select at least one sub county / constituency',
         ];
     }
 }

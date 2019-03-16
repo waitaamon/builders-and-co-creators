@@ -24,10 +24,9 @@ class PersonalDetailsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:100',
-            'email' => 'nullable|email|unique:users,email',
-            'id_number' => 'required|string|max:8|min:7',
-            'fb_name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:100',
+            'last_name' => 'required|string|max:100',
+            'email' => 'required|email|unique:users,email',
             'phone' => 'required|string|unique:users,phone'
         ];
     }

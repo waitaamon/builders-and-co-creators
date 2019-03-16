@@ -18,7 +18,7 @@ class CreateVideosTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('url');
             $table->string('title');
-            $table->string('slug')->unique();
+            $table->string('slug', 191)->unique();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -14,7 +14,7 @@
     <section class="s-content">
         <div class="row entries-wrap wide">
             <div class="col text-center">
-                <a href="{{ route('register') }}" class="btn btn-primary btn-outline-primary text-uppercase">Create Account</a>
+                <a href="{{ route('register') }}" class="btn btn-primary btn-outline-primary text-uppercase">BECOME A MEMBER</a>
             </div>
         </div>
     </section>

@@ -14,7 +14,7 @@ class County extends Model
         return $this->belongsTo(Country::class);
     }
 
-    public function sub_county()
+    public function sub_counties()
     {
         return $this->hasMany(SubCounty::class);
     }

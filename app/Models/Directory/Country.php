@@ -14,6 +14,11 @@ class Country extends Model
         return $this->hasMany(County::class);
     }
 
+    public function sub_counties()
+    {
+        return $this->hasManyThrough(SubCounty::class, County::class);
+    }
+
     public function users()
     {
         return $this->hasManyThrough(User::class, Location::class);

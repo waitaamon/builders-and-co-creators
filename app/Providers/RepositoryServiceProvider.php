@@ -2,14 +2,17 @@
 
 namespace App\Providers;
 
-use App\Repositories\Contracts\{ImageSliderRepository,
+use App\Models\Directory\Country;
+use App\Repositories\Contracts\{CountryRepository,
+    ImageSliderRepository,
     NewLetterEmailRepository,
     PostRepository,
     TopicRepository,
-    UserDirectoryRepository,
+    ProfessionRepository,
     UserRepository,
     VideoRepository};
 use App\Repositories\Eloquent\{Directory\EloquentProfessionRepository,
+    EloquentCountryRepository,
     EloquentImageSliderRepository,
     EloquentNewsLetterEmailRepository,
     EloquentPostRepository,
@@ -33,7 +36,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PostRepository::class, EloquentPostRepository::class);
         $this->app->bind(VideoRepository::class, EloquentVideoRepository::class);
         $this->app->bind(NewLetterEmailRepository::class, EloquentNewsLetterEmailRepository::class);
-        $this->app->bind(UserDirectoryRepository::class, EloquentProfessionRepository::class);
+        $this->app->bind(ProfessionRepository::class, EloquentProfessionRepository::class);
+        $this->app->bind(CountryRepository::class, EloquentCountryRepository::class);
     }
 
     /**

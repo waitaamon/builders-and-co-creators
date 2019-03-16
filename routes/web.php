@@ -24,8 +24,17 @@ Route::post('logout', 'Auth\LogoutController@index')->name('logout');
 //register routes
 Route::get('register', 'UserDirectory\UserDirectoryController@index')->name('register');
 
+//validate personal details
+Route::post('personal-details', 'UserDirectory\UserDirectoryController@validate_personal_details');
+
+//validate location details
+Route::post('location-details', 'UserDirectory\UserDirectoryController@validate_location_details');
+
 //subscribe to newsletter
 Route::post('/subscribe-to-newsletter', 'NewsLetterController@store')->name('subscribe');
+
+//registration details
+Route::get('registration-details', 'Api\RegistrationDetail@index');
 
 Route::group(['middleware' => 'auth'], function (){
 

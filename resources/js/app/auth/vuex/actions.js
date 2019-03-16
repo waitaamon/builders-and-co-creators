@@ -1,4 +1,4 @@
-export const createUser = ({ commit }, payload) => {
+export const validate = ({ commit }, payload) => {
 
-    return axios.post('/posts', payload)
+    return axios.post(payload.url, payload)
 }

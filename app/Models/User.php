@@ -7,6 +7,7 @@ use App\Models\Directory\Profession\{ArchitectBody,
     ContractorType,
     EngineerBody,
     EngineerType,
+    GeneralDetail,
     Profession,
     ProfessionalBody,
     SupplierItem,
@@ -26,7 +27,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'phone', 'id_number', 'fb_name',
+        'first_name', 'last_name', 'email', 'password', 'phone', 'national_id', 'facebook_name',
     ];
 
     /**
@@ -56,6 +57,11 @@ class User extends Authenticatable
     public function location()
     {
         return $this->hasOne(Location::class);
+    }
+
+    public function profession_general_details()
+    {
+        return $this->hasOne(GeneralDetail::class, 'user_id');
     }
 
     public function professions()
