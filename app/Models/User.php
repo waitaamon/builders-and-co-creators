@@ -3,15 +3,7 @@
 namespace App\Models;
 
 use App\Models\Directory\Location;
-use App\Models\Directory\Profession\{ArchitectBody,
-    ContractorType,
-    EngineerBody,
-    EngineerType,
-    GeneralDetail,
-    Profession,
-    ProfessionalBody,
-    SupplierItem,
-    WorkerType};
+use App\Models\Directory\Profession\{Body, GeneralDetail};
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,43 +56,13 @@ class User extends Authenticatable
         return $this->hasOne(GeneralDetail::class, 'user_id');
     }
 
-    public function professions()
+    /**
+     * Get all of the bodies that are assigned this user.
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function users()
     {
-        return $this->belongsToMany(Profession::class, 'profession_user');
+        return $this->belongsToMany(Body::class, 'body_user');
     }
 
-    public function contractor_types()
-    {
-        return $this->belongsToMany(ContractorType::class, 'contractor_user');
-    }
-
-    public function worker_types()
-    {
-        return $this->belongsToMany(WorkerType::class, 'user_worker_type');
-    }
-
-    public function professional_bodies()
-    {
-        return $this->belongsToMany(ProfessionalBody::class, 'professional_body_user');
-    }
-
-    public function supplier_items()
-    {
-        return $this->belongsToMany(SupplierItem::class, 'supplier_item_user');
-    }
-
-    public function engineer_types()
-    {
-        return $this->belongsToMany(EngineerType::class, 'engineer_type_user');
-    }
-
-    public function engineer_bodies()
-    {
-        return $this->belongsToMany(EngineerBody::class, 'engineer_body_user');
-    }
-
-    public function architect_bodies()
-    {
-        return $this->belongsToMany(ArchitectBody::class, 'architect_body_user');
-    }
 }

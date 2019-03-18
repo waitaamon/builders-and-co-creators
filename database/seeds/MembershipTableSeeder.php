@@ -42,6 +42,7 @@ class MembershipTableSeeder extends Seeder
             $p = new \App\Models\Directory\Profession\Membership();
 
             $p->title = $type->title;
+            $p->slug = str_slug($type->title);
             $p->description = $type->description;
             $p->save();
         }

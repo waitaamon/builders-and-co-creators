@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConstructionManagerBodiesTable extends Migration
+class CreateMembershipTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateConstructionManagerBodiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('construction_manager_bodies', function (Blueprint $table) {
+        Schema::create('membership_types', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('membership_id');
+            $table->boolean('is_specialized')->default(false);
+            $table->boolean('is_engineer')->default(false);
             $table->string('title');
             $table->text('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('membership_id')->references('id')->on('memberships')->onDelete('cascade');
         });
     }
 
@@ -28,6 +33,6 @@ class CreateConstructionManagerBodiesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('construction_manager_bodies');
+        Schema::dropIfExists('membership_types');
     }
 }

@@ -4,9 +4,9 @@ namespace App\Models\Directory\Profession;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Membership extends Model
+class MembershipType extends Model
 {
-    protected $fillable = ['title', 'slug', 'description'];
+    protected $fillable = ['membership_id', 'is_engineer', 'is_specialized', 'title', 'description'];
 
     /**
      * Get all of the bodies for the membership.
