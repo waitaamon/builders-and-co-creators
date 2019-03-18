@@ -27,10 +27,6 @@ class EngineerBodiesTableSeeder extends Seeder
             {
                 "title": "Energy Regulatory commission",
                 "description": ""
-            },
-            {
-                "title": "I am not Registered to any",
-                "description": ""
             }
         ]';
 

@@ -19,40 +19,47 @@ class WorkerTypeTableSeeder extends Seeder
             {
                 "title": "Plumber",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Electrician",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Tile Fixer",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Carpenter",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Casual Labourer",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Glass fixer",
                 "description": ""
-            },{
+            },
+            {
                 "title": "welder",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Painter",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Steel fixer",
                 "description": ""
             },{
                 "title": "Machine Operator",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Foreman",
                 "description": ""
-            },{
-                "title": "Safety Officer",
-                "description": ""
-            },{
+            },
+            {
                 "title": "Mama Ntilie",
                 "description": "Food Vendor"
             }

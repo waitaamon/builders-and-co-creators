@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProfessionBodiesTableSeeder extends Seeder
+class ContractorBodiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,26 +12,18 @@ class ProfessionBodiesTableSeeder extends Seeder
     public function run()
     {
         $bodies = '[
-            {
+           {
                 "title": "National Construction Authority",
                 "description": "NCA"
-            },{
-                "title": "Kenya Engineering Technology Registration Board",
-                "description": "KETRB"
-            },{
+            },
+            {
                 "title": "Kenya Federation Of Master Builders",
-                "description": "KFMA"
-            },{
-                "title": "Energy Regulatory Commision",
-                "description": "ERC"
-            },{
-                "title": "I am Not Registered to any",
-                "description": ""
+                "description": "KFMB"
             }
         ]';
 
         foreach (json_decode($bodies) as $body) {
-            $b = new \App\Models\Directory\Profession\ProfessionalBody();
+            $b = new \App\Models\Directory\Profession\ContractorBody();
 
             $b->title = $body->title;
             $b->description = $body->description;

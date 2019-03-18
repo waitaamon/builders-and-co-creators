@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGeneralDetailsTable extends Migration
+class CreateBodiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateGeneralDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('general_details', function (Blueprint $table) {
+        Schema::create('bodies', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->text('about')->nullable();
-            $table->string('company')->nullable();
+            $table->string('title');
+            $table->string('description')->nullable();
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateGeneralDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('general_details');
+        Schema::dropIfExists('bodies');
     }
 }

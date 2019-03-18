@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ArchitectBodiesTableSeeder extends Seeder
+class InteriorDesignerBodiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,17 +13,13 @@ class ArchitectBodiesTableSeeder extends Seeder
     {
         $bodies = '[
             {
-                "title": "Board of Registration of Architects and Quantity Surveyors",
-                "description": "BORAQS"
-            },
-            {
-                "title": "Architectural Association Of Kenya",
-                "description": "AAK"
+                "title": "Interior Designers Association of Kenya",
+                "description": "IDAK"
             }
         ]';
 
         foreach (json_decode($bodies) as $body) {
-            $b = new \App\Models\Directory\Profession\ArchitectBody();
+            $b = new \App\Models\Directory\Profession\InteriorDesignerBody();
 
             $b->title = $body->title;
             $b->description = $body->description;

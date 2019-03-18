@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class QuantitySurveyorTableSeeder extends Seeder
+class QuantitySurveyorBodiesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

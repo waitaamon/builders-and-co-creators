@@ -21,7 +21,7 @@ class MembershipTableSeeder extends Seeder
                 "description": ""
             },
             {
-                "title": "Construction Worker",
+                "title": "Skilled Worker",
                 "description": "laborer, masons, carpenters, electrician,foreman,plumbers etc"
             },
             {
