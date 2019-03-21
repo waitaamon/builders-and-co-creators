@@ -13,6 +13,15 @@ require('./interceptors');
 
 window.Vue = require('vue');
 
+Vue.filter('substring', function (value, length) {
+    if (!value) return ''
+    value = value.toString()
+    if(value.length <= length) {
+        return value
+    }
+    return value.substr(0, length) + '...'
+})
+
 const toastrConfigs = {
     position: 'top right',
     showDuration: 2000
@@ -40,6 +49,12 @@ Vue.component('new-slider-image', require('./app/admin/slider/components/NewSlid
 Vue.component('new-video', require('./app/admin/videos/components/NewVideo.vue').default);
 Vue.component('all-videos', require('./app/admin/videos/components/AllVideos').default);
 
+//bodies
+Vue.component('all-bodies', require('./app/admin/config/body/components/AllBodies.vue').default);
+
+//membership
+Vue.component('all-memberships', require('./app/admin/config/membership/components/AllMemberships.vue').default);
+Vue.component('edit-membership', require('./app/admin/config/membership/components/EditMembership.vue').default);
 
 const app = new Vue({
     store,

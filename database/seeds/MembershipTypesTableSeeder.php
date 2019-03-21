@@ -139,24 +139,25 @@ class MembershipTypesTableSeeder extends Seeder
             {
                 "title": "Civil Engineer",
                 "membership_id": "5",
-                "is_engineer" "true",
+                "is_engineer": "true",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Structural Engineer",
                 "membership_id": "5",
-                "is_engineer" "true",
+                "is_engineer": "true",
                 "description": ""
             },
             {
                 "title": "Mechanical Engineer",
                 "membership_id": "5",
-                "is_engineer" "true",
+                "is_engineer": "true",
                 "description": ""
             },
             {
                 "title": "Electrical Engineer",
                 "membership_id": "5",
-                "is_engineer" "true",
+                "is_engineer": "true",
                 "description": ""
             },
             {
@@ -188,7 +189,8 @@ class MembershipTypesTableSeeder extends Seeder
                 "title": "Curtains and Rods",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Wallpapers",
                 "membership_id": "4",
                 "description": ""
@@ -227,7 +229,8 @@ class MembershipTypesTableSeeder extends Seeder
                 "title": "Floor and Wall Tiles",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Roofing Tiles and Sheets",
                 "membership_id": "4",
                 "description": ""
@@ -241,39 +244,48 @@ class MembershipTypesTableSeeder extends Seeder
                 "title": "Machine Cut Stones",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Bricks",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Quarry Stones",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "EPS Panels",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Ballast",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Sand",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Timber and associated Products",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Cement",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Carpets",
                 "membership_id": "4",
                 "description": ""
-            },{
+            },
+            {
                 "title": "Gypsum and Other associated Boards",
                 "membership_id": "4",
                 "description": ""
@@ -353,8 +365,10 @@ class MembershipTypesTableSeeder extends Seeder
         foreach (json_decode($types) as $type) {
             $t = new \App\Models\Directory\Profession\MembershipType();
 
+            $t->membership_id = $type->membership_id;
+            $t->is_engineer = isset($type->is_engineer) ? true : false;
+            $t->is_specialized = isset($type->is_specialized) ? true : false;
             $t->title = $type->title;
-            $t->type = $type->type;
             $t->description = $type->description;
             $t->save();
         }

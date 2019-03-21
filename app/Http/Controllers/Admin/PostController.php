@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use function App\Helpers\extract_data;
 use function App\Helpers\extract_topics;
 use App\Http\Requests\PostRequest;
 use App\Http\Resources\PostResource;
@@ -81,7 +82,7 @@ class PostController extends Controller
             ], 422);
         }
 
-        $this->posts->createTopics($post->id, extract_topics($request->topics));
+        $this->posts->createTopics($post->id, extract_data($request->topics));
 
         //save image
         $post->addMedia($request->file('featured_image'))->toMediaCollection('posts');
@@ -144,7 +145,7 @@ class PostController extends Controller
             ], 422);
         }
 
-        $this->posts->createTopics($id, extract_topics($request->topics));
+        $this->posts->createTopics($id, extract_data($request->topics));
 
         return response()->json([
             'message' => 'success'

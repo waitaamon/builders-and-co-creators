@@ -71,6 +71,21 @@ abstract class RepositoryAbstract implements RepositoryInterface, CriteriaInterf
         return $this->entity->create($properties);
     }
 
+    public function createWithRelationship(int $modelId, string $method, array $properties)
+    {
+        return $this->entity->find($modelId)->$method()->create($properties);
+    }
+
+    public function updateWithRelationship(int $modelId, string $method, array $properties)
+    {
+        return $this->entity->find($modelId)->$method()->update($properties);
+    }
+
+    public function sync(int $modelId, string $method, array $properties)
+    {
+        return $this->entity->find($modelId)->$method()->sync($properties);
+    }
+
     public function update($id, array $properties)
     {
 

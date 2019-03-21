@@ -14,3 +14,13 @@ Route::get('videos', 'Api\VideoController@index');
 
 //slider images
 Route::get('slider-images', 'Api\SliderImageController@index');
+
+//memberships
+Route::get('memberships', 'Api\MembershipController@index');
+Route::get('membership/{id}', 'Api\MembershipController@show');
+
+//membership type
+Route::get('membership-type/{id}', 'Api\MembershipTypeController@index');
+
+//bodies
+Route::get('bodies', 'Api\BodyController@index');

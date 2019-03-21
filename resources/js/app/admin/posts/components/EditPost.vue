@@ -107,9 +107,6 @@
                 getPost: 'post/getPost',
                 getTopics: 'topic/getTopics'
             }),
-            getSelectedPost(id) {
-              this.getPost(id)
-            },
             onSelect (items, lastSelectItem) {
                 this.form.topics = items
                 this.lastSelectItem = lastSelectItem
@@ -129,7 +126,7 @@
         },
         created () {
             this.getTopics()
-            this.getSelectedPost(this.post_id)
+            this.getPost(this.post_id)
         }
     }
 </script>

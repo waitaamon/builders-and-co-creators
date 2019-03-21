@@ -21,11 +21,6 @@ class EloquentUserRepository extends RepositoryAbstract implements UserRepositor
         return User::class;
     }
 
-    public function sync(int $userId, $method,  array $properties)
-    {
-        return $this->find($userId)->$method()->sync($properties);
-    }
-
     public function createLocation(int $userId, array $properties)
     {
         return $this->find($userId)->location()->create($properties);

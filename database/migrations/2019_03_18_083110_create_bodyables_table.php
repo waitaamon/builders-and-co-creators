@@ -14,9 +14,10 @@ class CreateBodyablesTable extends Migration
     public function up()
     {
         Schema::create('bodyables', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('body_id')->unsigned();
-            $table->morphs('body');
+            $table->morphs('bodyable');
+
+            $table->foreign('body_id')->references('id')->on('bodies')->onDelete('cascade');
         });
     }
 

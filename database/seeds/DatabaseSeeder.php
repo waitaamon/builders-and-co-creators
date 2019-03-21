@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
              CountyAndSubCountySeeder::class,
              MembershipTableSeeder::class,
              MembershipTypesTableSeeder::class,
+             UsersTableSeeder::class,
          ]);
     }
 }

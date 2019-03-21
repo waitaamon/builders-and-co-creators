@@ -9,6 +9,26 @@ class Body extends Model
 {
     protected $fillable = ['title', 'description'];
 
+    protected $appends = ['text', 'value'];
+
+    /**
+     * Get the text version of title.
+     *
+     */
+    public function getTextAttribute()
+    {
+        return $this->attributes['title'];
+    }
+
+    /**
+     * Get the text version of title.
+     *
+     */
+    public function getValueAttribute()
+    {
+        return $this->attributes['id'];
+    }
+
     /**
      * Get all of the users that are assigned this body.
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -27,6 +27,12 @@ interface RepositoryInterface
 
     public function create(array  $properties);
 
+    public function createWithRelationship(int $modelId, string $method, array $properties);
+
+    public function updateWithRelationship(int $modelId, string $method, array $properties);
+
+    public function sync(int $modelId, string $method, array $properties);
+
     public function update($id, array  $properties);
 
     public function delete($id);

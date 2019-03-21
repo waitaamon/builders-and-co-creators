@@ -40,16 +40,40 @@ Route::group(['middleware' => 'auth'], function (){
 
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    //posts resource routes
-    Route::resource('posts', 'Admin\PostController');
+    /*
+     *=================== ADMIN ROUTES ====================================================
+     */
+    Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function () {
 
-    //topics resource route
-    Route::resource('topics', 'Admin\TopicController');
+        //posts resource routes
+        Route::resource('posts', 'PostController');
 
-    //slider images resource route
-    Route::resource('sliders', 'Admin\SliderImageController');
+        //topics resource route
+        Route::resource('topics', 'TopicController');
 
-    //videos resource route
-    Route::resource('videos', 'Admin\VideoController');
+        //slider images resource route
+        Route::resource('sliders', 'SliderImageController');
+
+        //videos resource route
+        Route::resource('videos', 'VideoController');
+
+        //=========================== Configuration ========================================
+        Route::group(['namespace' => 'Config', 'prefix' => 'config'], function () {
+
+            //professional bodies routes
+            Route::resource('bodies', 'BodyController');
+
+            //memberships routes
+            Route::resource('memberships', 'MembershipController');
+
+            //membership type routes
+            Route::resource('membership-types', 'MembershipTypeController');
+        });
+
+
+    });
+
+
+
 });
 

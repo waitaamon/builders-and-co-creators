@@ -15,4 +15,9 @@ class Membership extends Model
     {
         return $this->morphToMany('App\Models\Directory\Profession\Body', 'bodyable');
     }
+
+    public function membership_types()
+    {
+        return $this->hasMany(MembershipType::class);
+    }
 }

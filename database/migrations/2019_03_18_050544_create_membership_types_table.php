@@ -15,7 +15,7 @@ class CreateMembershipTypesTable extends Migration
     {
         Schema::create('membership_types', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('membership_id');
+            $table->integer('membership_id')->unsigned();
             $table->boolean('is_specialized')->default(false);
             $table->boolean('is_engineer')->default(false);
             $table->string('title');
