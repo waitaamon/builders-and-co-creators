@@ -9,3 +9,7 @@ export const setMembership = (state, membership) => {
 export const setMembershipTypes = (state, membershipTypes) => {
     state.membershipTypes = membershipTypes
 }
+
+export const setMembershipType = (state, membershipType) => {
+    state.membershipType = membershipType
+}

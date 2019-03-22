@@ -41,6 +41,30 @@ export const getMembershipTypes = ({ commit }) => {
         })
 }
 
+export const setMembershipType = ({ commit }, payload) => {
+
+    return new Promise((resolve, reject) => {
+        commit('setMembershipType', payload)
+        resolve(true)
+    })
+}
+
+export const createMembershipType = ({ commit }, payload) => {
+    console.log(payload)
+    return axios.post('/admin/config/membership-types', payload)
+        .then(response => {
+            commit('setMembership', response.data)
+        })
+}
+
+export const updateMembershipType = ({ commit }, payload) => {
+
+    return axios.patch('/admin/config/membership-types/' + payload.id, payload)
+        .then(response => {
+            commit('setMembership', response.data)
+        })
+}
+
 export const deleteMembershipType = ({ commit }, id) => {
 
     return axios.delete('/admin/config/membership-types/' + id)

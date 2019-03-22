@@ -82,7 +82,6 @@
                 searchText: '',
                 lastSelectItem: {},
                 showModal: false,
-
             }
         },
         computed:{

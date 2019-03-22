@@ -21,7 +21,7 @@ class MembershipResource extends JsonResource
             'description' => $this->description,
             'registered_on' => $this->created_at,
             'bodies' => $this->bodies,
-            'membershipTypes' => $this->membership_types
+            'membershipTypes' => MembershipTypeResource::collection($this->membership_types)
         ];
     }
 }

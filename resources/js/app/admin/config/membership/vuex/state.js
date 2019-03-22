@@ -1,5 +1,6 @@
 export default {
     memberships: [],
     membership: null,
-    membershipTypes: []
+    membershipTypes: [],
+    membershipType: null
 }
